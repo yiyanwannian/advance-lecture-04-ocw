@@ -193,7 +193,7 @@ fn test_offchain_signed_tx() {
 		assert!(pool_state.read().transactions.is_empty());
 		let tx = TestExtrinsic::decode(&mut &*tx).unwrap();
 		assert_eq!(tx.signature.unwrap().0, 0);
-		assert_eq!(tx.call, Call::submit_number_signed(num.try_into().unwrap()));
+		assert_eq!(tx.call, Call::submit_number_signed(num));
 	});
 }
 
@@ -210,6 +210,6 @@ fn test_offchain_unsigned_tx() {
 		assert!(pool_state.read().transactions.is_empty());
 		let tx = TestExtrinsic::decode(&mut &*tx).unwrap();
 		assert_eq!(tx.signature, None);
-		assert_eq!(tx.call, Call::submit_number_unsigned(num.try_into().unwrap()));
+		assert_eq!(tx.call, Call::submit_number_unsigned(num));
 	});
 }
